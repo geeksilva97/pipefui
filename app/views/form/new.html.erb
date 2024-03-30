@@ -1,0 +1,111 @@
+<main class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col">
+      <h1 class="display-4">Creating a new form</h1>
+
+      <fieldset>
+        <legend>Crie seu formulário</legend>
+        <%# <%= form_with url: "/form", method: :post do |form| %1> %>
+        <%#   <%= form.label :query, "Search for:" %1> %>
+        <%#   <%= form.text_field :query %1> %>
+        <%#   <%= form.text_field :query %1> %>
+        <%#   <button type="button" class="add-more-fields">Add more fields</button> %>
+        <%#   <%= form.submit "Search" %1> %>
+        <%# <% end %1> %>
+
+      <aside>
+        <form class="add-field-form">
+          <input type="text" name="title" placeholder="Título da pergunta" />
+
+          <select name="type">
+            <option disabled selected>Selecione...</option>
+            <option value="text">Texto Curto</option>
+            <option value="textarea">Texto Longo</option>
+            <option value="combobox">Combobox</option>
+          </select>
+
+          <button type="submit" class="add-field">Add Field</button>
+        </form>
+      </aside>
+
+        <br />
+
+        <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
+          <input type="text" name="form[title]" placeholder="Título do Vídeo" />
+
+          <input type="text" name="form[fields][][name]" />
+          <input type="text" name="form[fields][][type]" />
+
+          <hr />
+
+          <input type="text" name="form[fields][][name]" />
+          <input type="text" name="form[fields][][type]" />
+
+          <hr />
+
+          <input type="text" name="form[section1][fields][][name]" />
+          <input type="text" name="form[section1][fields][][type]" />
+
+          <input type="text" name="form[section1][fields][][name]" />
+          <input type="text" name="form[section1][fields][][type]" />
+
+          <hr />
+
+          <input type="text" name="form[section2][fields][][name]" />
+          <input type="text" name="form[section2][fields][][type]" />
+          <input type="text" name="form[section2][fields][][options][]" value="option1" />
+          <input type="text" name="form[section2][fields][][options][]" value="option2" />
+
+          <div class="fields">
+          </div>
+
+          <%= form.submit  %>
+        <% end  %>
+
+      </fieldset>
+    </div>
+  </div>
+</main>
+
+ <script>
+   const addFieldForm = document.querySelector('.add-field-form');
+   const registeringForm = document.querySelector('.registering-form .fields');
+
+   const d = Symbol('default');
+   const factory = {
+     text: () => document.createElement('input'),
+     textarea: () => document.createElement('textarea'),
+     combobox: () => document.createElement('select'),
+     [d]: () => document.createTextNode('something went wrong')
+   };
+
+   function buildFieldElem(fieldType) {
+     const fieldFactory = factory[fieldType] || factory[d];
+
+     return fieldFactory();
+   }
+
+   function createFieldElem(title, type) {
+     const div = document.createElement('div');
+
+     const titleInput = document.createElement('input');
+     titleInput.type = 'text';
+     titleInput.value = title;
+
+     const fieldElem = buildFieldElem(type);
+
+     div.appendChild(titleInput);
+     div.appendChild(fieldElem);
+
+     return div;
+   }
+
+   addFieldForm.addEventListener('submit', function f(e) {
+     e.preventDefault();
+
+     const formData = new FormData(addFieldForm);
+
+     registeringForm.appendChild(createFieldElem.apply(null, Array.from(formData.values())))
+   });
+
+ </script>
