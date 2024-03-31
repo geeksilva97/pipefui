@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sekret
+    ports:
+      - "5432:5432"
