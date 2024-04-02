@@ -6,7 +6,7 @@
       <section style="display: flex; column-gap: 1.5rem; align-items: stretch;">
         <fieldset style="flex: 3">
 
-        <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
+        <%= form_for :form, url: form_index_path, html: {class: 'registering-form'} do |form| %>
           <label>Form title: </label><input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
 
 
@@ -34,7 +34,7 @@
         <% end  %>
         </fieldset>
         <fieldset>
-        <%= form_with url: "/form/add_field" do |form| %>
+        <%= form_with url: add_field_form_index_path do |form| %>
           <input type="text" name="field[title]" required placeholder="Título da pergunta" />
 
           <select name="field[field_type]" required>
