@@ -1,11 +1,12 @@
 <main class="container">
   <div class="row text-center justify-content-center">
     <div class="col">
-      <h1 class="display-4">Creating a new form</h1>
+      <h1 class="display-4">Pipefui - Creating a new form</h1>
+
+      <section>
+      </section>
 
       <fieldset>
-        <legend>Crie seu formulário <%= @fields.count %></legend>
-
       <aside>
         <%= form_with url: "/form/add_field" do |form| %>
           <input type="text" name="field[title]" required placeholder="Título da pergunta" />
@@ -14,7 +15,6 @@
             <option value="" disabled selected>Selecione...</option>
             <option value="text">Texto Curto</option>
             <option value="textarea">Texto Longo</option>
-            <option value="combobox">Combobox</option>
           </select>
 
           <button type="submit" class="add-field">Add Field</button>
@@ -24,7 +24,7 @@
         <br />
 
         <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
-          <input required type="text" name="form[title]" placeholder="Título do formulário" />
+          <input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
 
           <br />
           <br />
@@ -36,10 +36,11 @@
             <select name="form[fields][][type]" required>
               <option value="text" <%= field['type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
               <option value="textarea" <%= field['type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
-              <option value="combobox" <%= field['type'] == 'combobox' ? 'selected' : '' %>>Combobox</option>
             </select>
 
             <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
+
+            <button name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
           <% end %>
 
           <%= form.submit  %>

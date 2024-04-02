@@ -8,7 +8,16 @@ class FormController < ApplicationController
 
   def add_field
     session[:fields] = [] if session[:fields].nil?
-    session[:fields] << {'id' => SecureRandom.uuid}.merge(params[:field].permit(:title, :type))
+    session[:fields] << {'id' => SecureRandom.uuid}.merge(add_field_params)
+
+    redirect_to(action: 'new')
+  end
+
+  def remove_field(field_id)
+    # TODO: turn fields in session into a hashmap, much better for this kind of manipulation
+    session[:fields].delete_if do |field|
+      field['id'] == field_id
+    end
 
     redirect_to(action: 'new')
   end
@@ -18,10 +27,20 @@ class FormController < ApplicationController
   end
 
   def create
-    puts "received a request"
+    if form_submit_params[:remove_field].nil?
+      render(body: 'saving form')
+    else
+      remove_field(form_submit_params[:remove_field])
+    end
+  end
 
-    session[:fields] = []
+  private
 
-    redirect_to(action: 'show', id: 100)
+  def add_field_params
+    params[:field].permit(:title, :type)
+  end
+
+  def form_submit_params
+    params[:form].permit(:title, :remove_field, fields: [:id, :name, :type])
   end
 end
