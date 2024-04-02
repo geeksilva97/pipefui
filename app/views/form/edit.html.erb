@@ -1,10 +1,25 @@
-<h1>Edit your form</h1>
+<main class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-4">Pipefui - Edit your form</h1>
 
-<%= form_for :form, method: 'put', url: form_path, html: {class: 'registering-form'} do |form| %>
-  <%= render "shared/form_preview", title: @form.title, fields: @form.fields, form: form %>
+      <section style="display: flex; column-gap: 1.5rem; align-items: stretch;">
+        <fieldset style="flex: 3">
 
-  <br />
+        <%= form_for :form, url: form_path, method: 'put', html: {class: 'registering-form'} do |form| %>
+          <%= render "shared/form_preview", title: @form.title, fields: @fields, form: form %>
 
-  <%= form.submit %>
-<% end %>
+          <br />
 
+          <%= form.submit  %>
+        <% end  %>
+        </fieldset>
+        <fieldset>
+        <%= form_with url: add_field_form_index_path do |form| %>
+          <%= render 'shared/field_adding', select_input_name: 'field[field_type]' %>
+        <% end %>
+        </fieldset>
+      </section>
+    </div>
+  </div>
+</main>

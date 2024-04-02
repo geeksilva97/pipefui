@@ -6,11 +6,21 @@ class FormController < ApplicationController
     @fields = session[:fields] || []
   end
 
+  def update
+    if form_submit_params[:remove_field].nil?
+      update_form
+    else
+      remove_field(form_submit_params[:remove_field])
+
+      redirect_to(action: 'edit')
+    end
+  end
+
   def add_field
     session[:fields] = [] if session[:fields].nil?
     session[:fields] << {'id' => SecureRandom.uuid}.merge(add_field_params)
 
-    redirect_to(action: 'new')
+    redirect_back(fallback_location:"/")
   end
 
   def remove_field(field_id)
@@ -19,11 +29,11 @@ class FormController < ApplicationController
       field['id'] == field_id
     end
 
-    redirect_to(action: 'new')
   end
 
   def edit
     @form = Form.eager_load(:fields).find(params[:id])
+    @fields = @form.fields + session[:fields]
   end
 
   def create
@@ -31,6 +41,8 @@ class FormController < ApplicationController
       save_form
     else
       remove_field(form_submit_params[:remove_field])
+
+      redirect_to(action: 'new')
     end
   end
 
@@ -45,6 +57,9 @@ class FormController < ApplicationController
     session[:fields] = []
 
     redirect_to edit_form_path(f)
+  end
+
+  def update_form
   end
 
   def add_field_params
