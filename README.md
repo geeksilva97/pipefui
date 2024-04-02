@@ -15,7 +15,7 @@ Aqui teremos basicamente um CRUD no formulário. O formulário deve possuir um t
 
 Você pode organizar as rotas como achar melhor, mas aqui vai uma sugestão:
 
-- `dashboard/form` - lista os forms criados
+- `dashboard/form` - lista os forms criados (com um link pra edit e exclusao)
 - `dashboard/form/new` - renderiza o template para a criação de um novo form
 - `dashboard/form/:formid/edit` - renderiza o template para a edição de um form
 
