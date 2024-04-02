@@ -1,0 +1,5 @@
+<select name="<%= name %>" required>
+  <option value="" disabled selected>Selecione...</option>
+  <option value="text" <%= selected_type == 'text' ? 'selected' : '' %>>Texto Curto</option>
+  <option value="textarea" <%= selected_type == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
+</select>

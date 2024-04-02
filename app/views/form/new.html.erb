@@ -16,15 +16,7 @@
         </fieldset>
         <fieldset>
         <%= form_with url: add_field_form_index_path do |form| %>
-          <input type="text" name="field[name]" required placeholder="Título da pergunta" />
-
-          <select name="field[field_type]" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option value="text">Texto Curto</option>
-            <option value="textarea">Texto Longo</option>
-          </select>
-
-          <button type="submit" class="add-field">Add Field</button>
+          <%= render 'shared/field_adding', select_input_name: 'field[field_type]' %>
         <% end %>
         </fieldset>
       </section>

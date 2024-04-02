@@ -7,7 +7,6 @@
   <div>
     <%= form.text_field field['id'], value: field['name'], name: "form[fields][][name]"%>
 
-    <!-- move that to a partial -->
     <select name="form[fields][][field_type]" required>
       <option value="text" <%= field['field_type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
       <option value="textarea" <%= field['field_type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
