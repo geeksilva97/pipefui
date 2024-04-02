@@ -3,23 +3,27 @@
     <div class="col">
       <h1 class="display-4">Pipefui - Creating a new form</h1>
 
-      <section class="flex gap-y-6">
-        <fieldset>
+      <section style="display: flex; column-gap: 1.5rem; align-items: stretch;">
+        <fieldset style="flex: 3">
+          <legend>Form preview</legend>
+
         <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
           <input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
 
           <% @fields.each do |field| %>
-            <%= form.text_field field['id'], value: field['title'], name: "form[fields][][name]"%>
+            <div>
+              <%= form.text_field field['id'], value: field['title'], name: "form[fields][][name]"%>
 
-            <!-- move that to a partial -->
-            <select name="form[fields][][type]" required>
-              <option value="text" <%= field['type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
-              <option value="textarea" <%= field['type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
-            </select>
+              <!-- move that to a partial -->
+              <select name="form[fields][][type]" required>
+                <option value="text" <%= field['type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
+                <option value="textarea" <%= field['type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
+              </select>
 
-            <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
+              <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
 
-            <button class="bt-remove" name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
+              <button class="bt-remove" name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
+            </div>
           <% end %>
 
           <%= form.submit  %>
