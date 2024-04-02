@@ -1,1 +1,20 @@
-THIS IS SUPPOSED TO RENDER THE FIELD PREVIEW
+<label>Form title: </label><input required type="text" value="<%= title %>" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
+
+<h3>Fields</h3>
+
+
+<% fields.each do |field| %>
+  <div>
+    <%= form.text_field field['id'], value: field['name'], name: "form[fields][][name]"%>
+
+    <!-- move that to a partial -->
+    <select name="form[fields][][field_type]" required>
+      <option value="text" <%= field['field_type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
+      <option value="textarea" <%= field['field_type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
+    </select>
+
+    <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
+
+    <button class="bt-remove" name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
+  </div>
+<% end %>

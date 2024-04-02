@@ -1,3 +1,10 @@
-<h1><%= @form.title %></h1>
+<h1>Edit your form</h1>
 
-<%= render "shared/form_preview" %>
+<%= form_for :form, method: 'put', url: form_path, html: {class: 'registering-form'} do |form| %>
+  <%= render "shared/form_preview", title: @form.title, fields: @form.fields, form: form %>
+
+  <br />
+
+  <%= form.submit %>
+<% end %>
+

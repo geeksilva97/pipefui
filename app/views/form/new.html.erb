@@ -9,7 +9,6 @@
         <%= form_for :form, url: form_index_path, html: {class: 'registering-form'} do |form| %>
           <label>Form title: </label><input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
 
-
           <h3>Fields</h3>
 
           <% @fields.each do |field| %>
