@@ -48,7 +48,7 @@ class FormController < ApplicationController
   end
 
   def add_field_params
-    params[:field].permit(:title, :field_type)
+    params[:field].permit(:name, :field_type)
   end
 
   def form_submit_params
