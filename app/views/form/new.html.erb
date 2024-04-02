@@ -1,33 +1,12 @@
 <main class="container">
-  <div class="row text-center justify-content-center">
+  <div class="row">
     <div class="col">
       <h1 class="display-4">Pipefui - Creating a new form</h1>
 
-      <section>
-      </section>
-
-      <fieldset>
-      <aside>
-        <%= form_with url: "/form/add_field" do |form| %>
-          <input type="text" name="field[title]" required placeholder="Título da pergunta" />
-
-          <select name="field[type]" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option value="text">Texto Curto</option>
-            <option value="textarea">Texto Longo</option>
-          </select>
-
-          <button type="submit" class="add-field">Add Field</button>
-        <% end %>
-      </aside>
-
-        <br />
-
+      <section class="flex gap-y-6">
+        <fieldset>
         <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
           <input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
-
-          <br />
-          <br />
 
           <% @fields.each do |field| %>
             <%= form.text_field field['id'], value: field['title'], name: "form[fields][][name]"%>
@@ -40,12 +19,26 @@
 
             <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
 
-            <button name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
+            <button class="bt-remove" name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
           <% end %>
 
           <%= form.submit  %>
         <% end  %>
-      </fieldset>
+        </fieldset>
+        <fieldset>
+        <%= form_with url: "/form/add_field" do |form| %>
+          <input type="text" name="field[title]" required placeholder="Título da pergunta" />
+
+          <select name="field[type]" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option value="text">Texto Curto</option>
+            <option value="textarea">Texto Longo</option>
+          </select>
+
+          <button type="submit" class="add-field">Add Field</button>
+        <% end %>
+        </fieldset>
+      </section>
     </div>
   </div>
 </main>
