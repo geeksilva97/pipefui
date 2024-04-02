@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :form_answer, path: '/' do
+    post :answer, on: :member, only: [:show, :answer]
+  end
+
   # Defines the root path route ("/")
   root "form#index"
 end

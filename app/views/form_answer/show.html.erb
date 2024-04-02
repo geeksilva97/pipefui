@@ -1,0 +1,8 @@
+<h1><%= @form.title %></h1>
+
+<%= form_for :form, url: answer_form_answer_path, html: {class: 'answering-form'} do |form| %>
+
+  <br />
+
+  <%= form.submit 'Send Answer'  %>
+<% end  %>
