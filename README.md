@@ -21,6 +21,8 @@ Você pode organizar as rotas como achar melhor, mas aqui vai uma sugestão:
 
 Acima estão as ações que têm templates. Naturalmente, as que performam ações apenas também devem existir. Ação de `update`, `create` e `delete`.
 
+Campos podem ser adicionados, removidos e/ou alterados durante o processo. Tal qual um form do Google. Você pode usar sessões pra isso.
+
 ## Task 2 - Recebimento de respostas no form criado
 
 Os formulários criados devem estar aptos a receber respostas. De novo, organize as rotas como quiser. Mas como
