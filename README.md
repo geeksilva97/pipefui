@@ -23,6 +23,11 @@ Acima estão as ações que têm templates. Naturalmente, as que performam açõ
 
 Campos podem ser adicionados, removidos e/ou alterados durante o processo. Tal qual um form do Google. Você pode usar sessões pra isso.
 
+### Demo da task 1
+
+https://github.com/geeksilva97/pipefui/assets/15680379/9dc5f4ce-3975-4789-81da-94ca4706bd57
+
+
 ## Task 2 - Recebimento de respostas no form criado
 
 Os formulários criados devem estar aptos a receber respostas. De novo, organize as rotas como quiser. Mas como
