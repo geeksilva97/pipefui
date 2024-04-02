@@ -10,7 +10,10 @@ class FormController < ApplicationController
     if form_submit_params[:remove_field].nil?
       update_form(params[:id])
     else
-      remove_field(form_submit_params[:remove_field])
+      field_id = form_submit_params[:remove_field]
+      remove_field(field_id)
+
+      Field.delete(field_id)
 
       redirect_to(action: 'edit')
     end
@@ -28,9 +31,6 @@ class FormController < ApplicationController
     session[:fields].delete_if do |field|
       field['id'] == field_id
     end
-
-    session[:removed_fields] = [] if session[:removed_fields].nil?
-    session[:removed_fields] << field_id
   end
 
   def edit
@@ -57,7 +57,6 @@ class FormController < ApplicationController
     f.save!
 
     session[:fields] = []
-    session[:removed_fields] = []
 
     redirect_to edit_form_path(f)
   end
@@ -68,10 +67,8 @@ class FormController < ApplicationController
     fields = form_submit_params['fields'].map {|field| {id: field['id'], name: field['name'], field_type: field['field_type'], form_id: form_id}}
 
     Field.upsert_all(fields)
-    Field.delete(session[:removed_fields])
 
     session[:fields] = []
-    session[:removed_fields] = []
 
     redirect_to edit_form_path(form_id)
   end
