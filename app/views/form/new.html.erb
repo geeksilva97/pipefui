@@ -17,9 +17,9 @@
               <%= form.text_field field['id'], value: field['title'], name: "form[fields][][name]"%>
 
               <!-- move that to a partial -->
-              <select name="form[fields][][type]" required>
-                <option value="text" <%= field['type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
-                <option value="textarea" <%= field['type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
+              <select name="form[fields][][field_type]" required>
+                <option value="text" <%= field['field_type'] == 'text' ? 'selected' : '' %>>Texto Curto</option>
+                <option value="textarea" <%= field['field_type'] == 'textarea' ? 'selected' : '' %>>Texto Longo</option>
               </select>
 
               <%= form.hidden_field field['id'], value: field['id'], name: "form[fields][][id]"%>
@@ -37,7 +37,7 @@
         <%= form_with url: "/form/add_field" do |form| %>
           <input type="text" name="field[title]" required placeholder="Título da pergunta" />
 
-          <select name="field[type]" required>
+          <select name="field[field_type]" required>
             <option value="" disabled selected>Selecione...</option>
             <option value="text">Texto Curto</option>
             <option value="textarea">Texto Longo</option>

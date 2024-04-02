@@ -22,13 +22,13 @@ class FormController < ApplicationController
     redirect_to(action: 'new')
   end
 
-  def show
-    render(body: 'show form')
+  def edit
+    @form = Form.eager_load(:fields).find(params[:id])
   end
 
   def create
     if form_submit_params[:remove_field].nil?
-      render(body: 'saving form')
+      save_form
     else
       remove_field(form_submit_params[:remove_field])
     end
@@ -36,11 +36,22 @@ class FormController < ApplicationController
 
   private
 
+  def save_form
+    f = Form.new(form_submit_params.except(:fields))
+    f.fields = form_submit_params['fields'].map {|field| Field.new(id: field['id'], name: field['name'], field_type: field['field_type'].to_sym)}
+
+    f.save!
+
+    session[:fields] = []
+
+    redirect_to edit_form_path(f)
+  end
+
   def add_field_params
-    params[:field].permit(:title, :type)
+    params[:field].permit(:title, :field_type)
   end
 
   def form_submit_params
-    params[:form].permit(:title, :remove_field, fields: [:id, :name, :type])
+    params[:form].permit(:title, :remove_field, fields: [:id, :name, :field_type])
   end
 end
