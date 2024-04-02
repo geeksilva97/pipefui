@@ -5,10 +5,12 @@
 
       <section style="display: flex; column-gap: 1.5rem; align-items: stretch;">
         <fieldset style="flex: 3">
-          <legend>Form preview</legend>
 
         <%= form_for :form, url: "/form", html: {class: 'registering-form'} do |form| %>
-          <input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
+          <label>Form title: </label><input required type="text" name="form[title]" value="Formulário Sem Titulo" placeholder="Título do formulário" />
+
+
+          <h3>Fields</h3>
 
           <% @fields.each do |field| %>
             <div>
@@ -25,6 +27,8 @@
               <button class="bt-remove" name="form[remove_field]" value="<%= field['id'] %>">Remove Field</button>
             </div>
           <% end %>
+
+          <br />
 
           <%= form.submit  %>
         <% end  %>
