@@ -4,6 +4,7 @@
 
 - Precisa funcionar
 - Testes são obrigatórios (unitarios, request e e2e)
+- Precisa estar deployado no Render
 - Usar JavaScript não é necessário, fica a seu critério. Tudo pode ser feito com Rails e ERB.
 
 O desafio consiste na implementação de um criador de formulários
