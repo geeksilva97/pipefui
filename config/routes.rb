@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :form_answer, path: '/' do
-    post :answer, on: :member, only: [:show, :answer]
+  resources :form_answer, only: [:show, :answer], path: '/' do
+    post :answer, on: :member
+    get :success, on: :collection
   end
 
   # Defines the root path route ("/")

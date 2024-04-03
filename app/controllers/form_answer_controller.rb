@@ -3,6 +3,12 @@ class FormAnswerController < ApplicationController
     @form_data = Form.eager_load(:fields).find(params[:id])
   end
 
+  def success
+    @form_id = params[:id]
+
+    render 'success'
+  end
+
   def answer
     first_field = answer_params[0]
     form_id = params[:id]
@@ -23,7 +29,7 @@ class FormAnswerController < ApplicationController
     end
 
 
-    render(body: 'registrando sua resposta')
+    redirect_to success_form_answer_index_path(id: form.id)
   end
 
   private
