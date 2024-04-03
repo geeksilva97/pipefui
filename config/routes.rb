@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :form do
         post :add_field, on: :collection
         post :remove_field, on: :collection
+        # get :answer
+        # get 'answer/:id', to: 'form#full_answer'
       end
     end
   end

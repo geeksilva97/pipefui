@@ -1,9 +1,18 @@
 class FormController < ApplicationController
   def index
+    @form_list = Form.all
   end
 
   def new
     @fields = session[:fields] || []
+  end
+
+  def answer
+    @answers = Answer.where(form_id: params[:form_id])
+  end
+
+  def full_answer
+    @answer_values = AnswerValue.where(answer_id: params[:id])
   end
 
   def update

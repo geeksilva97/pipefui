@@ -1,0 +1,22 @@
+<h1>Form Answers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Preview</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answers.each do |answer| %>
+      <tr>
+        <td> <%= answer.preview %> <%= answer.id %> </td>
+        <td>
+          <%= link_to 'Full Answer', [answer.form, answer] %>
+          <%= link_to 'Delete', form_path(answer.id), method: 'delete' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

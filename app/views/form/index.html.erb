@@ -1,7 +1,29 @@
 <main class="container">
   <div class="row text-center justify-content-center">
     <div class="col">
-      <h1 class="display-4">Let's render a form on it</h1>
+      <h1 class="display-4">Your forms</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @form_list.each do |form| %>
+            <tr>
+              <td> <%= form.title %> </td>
+              <td>
+                <%= link_to 'Edit', edit_form_path(form.id) %>
+                <%= link_to 'Delete', form_path(form.id), method: 'delete' %>
+                <%= link_to 'See Answers', form_answer_path(form.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </main>

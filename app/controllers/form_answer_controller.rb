@@ -28,7 +28,6 @@ class FormAnswerController < ApplicationController
 
     end
 
-
     redirect_to success_form_answer_index_path(id: form.id)
   end
 
