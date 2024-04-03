@@ -13,7 +13,7 @@
       <tr>
         <td> <%= answer.preview %> <%= answer.id %> </td>
         <td>
-          <%= link_to 'Full Answer', [answer.form, answer] %>
+          <%= link_to 'Full Answer', form_full_answer_path(answer.form, answer) %>
           <%= link_to 'Delete', form_path(answer.id), method: 'delete' %>
         </td>
       </tr>

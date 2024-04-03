@@ -18,7 +18,7 @@
               <td>
                 <%= link_to 'Edit', edit_form_path(form.id) %>
                 <%= link_to 'Delete', form_path(form.id), method: 'delete' %>
-                <%= link_to 'See Answers', form_answer_path(form.id) %>
+                <%= link_to 'See Answers', form_dashboard_answer_path(form.id) %>
               </td>
             </tr>
           <% end %>
