@@ -9,6 +9,8 @@ class FormController < ApplicationController
 
   def destroy
     Form.delete(params[:id])
+
+    redirect_to(action: 'index')
   end
 
   def answer

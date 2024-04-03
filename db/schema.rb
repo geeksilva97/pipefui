@@ -52,9 +52,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_165612) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "answer_values", "answers"
-  add_foreign_key "answer_values", "fields"
-  add_foreign_key "answer_values", "forms"
-  add_foreign_key "answers", "forms"
-  add_foreign_key "fields", "forms"
+  add_foreign_key "answer_values", "answers", on_delete: :cascade
+  add_foreign_key "answer_values", "fields", on_delete: :nullify
+  add_foreign_key "answer_values", "forms", on_delete: :cascade
+  add_foreign_key "answers", "forms", on_delete: :cascade
+  add_foreign_key "fields", "forms", on_delete: :cascade
 end

@@ -4,7 +4,7 @@ class CreateFields < ActiveRecord::Migration[7.1]
       t.string :name
       t.integer :field_type
       t.boolean :is_required, default: false
-      t.references :form, null: false, foreign_key: true
+      t.references :form, null: false, foreign_key: {on_delete: :cascade}
 
       t.timestamps
     end
