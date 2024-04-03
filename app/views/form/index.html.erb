@@ -1,7 +1,7 @@
 <main class="container">
   <div class="row text-center justify-content-center">
     <div class="col">
-      <h1 class="display-4">Your forms</h1>
+      <h1 class="display-4">Your forms <%= link_to '[New form]', new_form_path %></h1>
 
       <table>
         <thead>
@@ -17,7 +17,7 @@
               <td> <%= form.title %> </td>
               <td>
                 <%= link_to 'Edit', edit_form_path(form.id) %>
-                <%= link_to 'Delete', form_path(form.id), method: 'delete' %>
+                <%= link_to "Delete", form_path(form), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
                 <%= link_to 'See Answers', form_dashboard_answer_path(form.id) %>
                 <%= link_to 'Fill it', form_answer_path(form.id) %>
               </td>

@@ -7,9 +7,17 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <header class="page-header">
+      <h1>Pipefy me daddy</h1>
+
+      <div class="menu-items">
+      <%= link_to 'Home', form_index_path %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

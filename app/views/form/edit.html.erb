@@ -1,9 +1,12 @@
 <main class="container">
   <div class="row">
     <div class="col">
-      <h1 class="display-4">Pipefui - Edit your form</h1>
+      <h1 class="display-4">Pipefui - Edit your form
 
-      <%= link_to 'Preview', form_answer_path(@form) %>
+        <small>
+          <%= link_to '[Preview]', form_answer_path(@form) %>
+        </small>
+      </h1>
 
       <section style="display: flex; column-gap: 1.5rem; align-items: stretch;">
         <fieldset style="flex: 3">

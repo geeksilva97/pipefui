@@ -7,6 +7,10 @@ class FormController < ApplicationController
     @fields = session[:fields] || []
   end
 
+  def destroy
+    Form.delete(params[:id])
+  end
+
   def answer
     @answers = Answer.where(form_id: params[:form_id])
   end
