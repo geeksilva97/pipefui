@@ -1,8 +1,13 @@
-<h1><%= @form.title %></h1>
+<h1><%= @form_data.title %></h1>
 
-<%= form_for :form, url: answer_form_answer_path, html: {class: 'answering-form'} do |form| %>
+<%= form_for :form, url: answer_form_answer_path, html: {class: 'answering-form'} do |f| %>
+
+<% @form_data.fields.each do |field| %>
+    <%= render 'shared/form_text_field', f: f, field: field if field.text? %>
+    <%= render 'shared/form_textarea_field', f: f, field: field if field.textarea? %>
+<% end %>
 
   <br />
 
-  <%= form.submit 'Send Answer'  %>
+  <%= f.submit 'Send Answer'  %>
 <% end  %>

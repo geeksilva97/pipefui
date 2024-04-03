@@ -1,0 +1,7 @@
+<%= f.label field['id'] do %>
+  <%= field['name'] %>: <%= f.text_field field['id'], required: true, name: "answer[#{field['id']}][value]" %>
+<% end %>
+
+<%= f.hidden_field field['id'], value: field['name'], name: "answer[#{field['id']}][name]"%>
+<%= f.hidden_field field['id'], value: field['id'], name: "answer[#{field['id']}][id]"%>
+
